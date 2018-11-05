@@ -1,0 +1,3 @@
+rootProject.name = 'alio-frame'
+
+include "spring-boot-starter-zookeeper", "spring-boot"

@@ -1,0 +1,29 @@
+allprojects {
+    group 'ml.alio'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'maven'
+
+    extensions.add("myMavenDomain", "http://maven.fan54.com");
+
+    uploadArchives {
+        repositories.mavenDeployer {
+            repository(url: "${myMavenDomain}/repository/maven-snapshots/") {
+                authentication(userName: "admin", password: "Fate1996")
+                pom.version = "$project.version"
+                pom.artifactId = "$project.name"
+                pom.groupId = "$project.group"
+            }
+        }
+    }
+
+
+    repositories {
+        maven { url '${myMavenDomain}/nexus/content/groups/public/' }
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+}
